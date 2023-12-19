@@ -24,13 +24,11 @@ Ketu is a tool designed to facilitate remote control and surveillance. It establ
    ```
    git clone https://github.com/ashokasec/ketu.git
    ```
-3. Install required modules for the Project.
-   ```
-   pip install keyboard pyperclip
-   ```
-5. Configure the server by running `server.py` on the host machine.
-6. Run `client.py` on the remote machine, specifying the server's IP address using the `--address` argument.
+2. Configure the server by running `server.py` on the host machine.
+3. Run `client.py` on the remote machine, specifying the server's IP address using the `--address` argument.
    Note: No need to specify server's IP address, if running on same machine for demo purpose.
+
+   | They will install the requirements by themselves |
 
 ## Usage
 
