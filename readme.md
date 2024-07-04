@@ -96,7 +96,7 @@ Replace `SERVER_IP` with the actual IP address where the server is running.
 
 Thank you for exploring KETU! We hope you found it insightful and beneficial for your knowledge.
 
-⭐ **Star the Repository**: If you found KETU interesting, consider giving it a star. Your support means a lot!
+⭐ **Star the Repository**: If you found KETU interesting, consider giving it a star. Your support means a lot! :) 
 
 Happy learning! 🚀
 
